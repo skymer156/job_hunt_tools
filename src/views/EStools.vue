@@ -4,7 +4,9 @@
     <p>ES Contains Counter</p>
     <textarea name="textarea" id="contains" cols="80" rows="10" v-model="text"></textarea>
     <div>{{text.length}}文字</div>
-    <div>置換機能ボタン実装予定</div>
+    <input type="text" name="before" id="convert" v-model="before_text" placeholder="before">
+    <input type="text" name="after" id="convert" v-model="after_text" placeholder="after">
+    <button @click="convert_text()">置換</button>
     <hr>
     <div>非同期 - 辞書検索機能</div>
     <p>理由や体験、やりたいこととかを対話的に記述して、文を作成する機能</p>
@@ -21,7 +23,14 @@ export default {
   name: 'EsTools',
   data() {
     return {
-      text: ''
+      text: '',
+      before_text: '',
+      after_text: '',
+    }
+  },
+  methods: {
+    convert_text: function() {
+      this.text = this.text.replaceAll(this.before_text, this.after_text);
     }
   },
 }
